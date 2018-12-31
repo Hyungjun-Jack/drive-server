@@ -1,26 +1,30 @@
 import {
   Entity,
   BaseEntity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
   Column
 } from "typeorm";
+import User from "./User";
 
 @Entity()
 class Place extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ type: "text" })
-  name;
+  name: string;
   @Column({ type: "double precision", default: 0 })
-  lat;
+  lat:number;
   @Column({ type: "double precision", default: 0 })
-  lng;
+  lng:number;
   @Column({ type: "text" })
-  address;
+  address:string;
   @Column({ type: "boolean", default: false })
-  isFav;
+  isFav:boolean;
+  @ManyToOne(type => User, user => user.places)
+  user: User;
   @CreateDateColumn()
   createdAt: string;
   @UpdateDateColumn()

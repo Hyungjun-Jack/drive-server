@@ -18,12 +18,35 @@ type Message {
 type Query {
   sayBye: String!
   sayHello(name: String!, what: String!): SayHelloResponse!
+  GetMyPlaces: GetMyPlacesResponse!
   GetMyProfile: GetMyProfileResponse!
 }
 
 type SayHelloResponse {
   text: String!
   error: Boolean!
+}
+
+type AddPlaceResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  AddPlace(name: String!, lat: Float!, lng: Float!, address: String!, isFav: Boolean!): AddPlaceResponse!
+  CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
+  EmailSignIn(email: String!, password: String!): EmailSignInResponse
+  EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!, phoneNumber: String!): EmailSignUpResponse!
+  FacebookConnect(firstName: String!, lastName: String!, email: String, fbId: String!): FacebookConnectResponse!
+  StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+  ToggleDrivingMode: ToggleDrivingModeResponse!
+  UpdateMyProfile(firstName: String, lastName: String, email: String, password: String, profilePhoto: String, age: Int): UpdateMyProfileResponse
+}
+
+type GetMyPlacesResponse {
+  ok: Boolean!
+  error: String
+  places: [Place]
 }
 
 type Place {
@@ -33,6 +56,7 @@ type Place {
   lng: Float!
   address: String!
   isFav: Boolean!
+  user: User!
   createdAt: String!
   updatedAt: String
 }
@@ -59,14 +83,6 @@ type CompletePhoneVerificationResponse {
   ok: Boolean!
   error: String
   token: String
-}
-
-type Mutation {
-  CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
-  EmailSignIn(email: String!, password: String!): EmailSignInResponse
-  EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!, phoneNumber: String!): EmailSignUpResponse!
-  FacebookConnect(firstName: String!, lastName: String!, email: String, fbId: String!): FacebookConnectResponse!
-  StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
 }
 
 type EmailSignInResponse {
@@ -113,14 +129,25 @@ type User {
   fbId: String
   chat: Chat
   messages: [Message]
-  verifications: [Verification]
+  # verifications: [Verification]
   rideAsPassenger: [Ride]
   rideAsDriver: [Ride]
+  places: [Place]
   createdAt: String!
   updatedAt: String
 }
 
 type StartPhoneVerificationResponse {
+  ok: Boolean!
+  error: String
+}
+
+type ToggleDrivingModeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type UpdateMyProfileResponse {
   ok: Boolean!
   error: String
 }

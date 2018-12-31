@@ -27,17 +27,19 @@ drive server
 - [ ] Request Email Verification
 - [ ] Complete Email Verification
 - [ ] Update my Profile
-- [ ] Toggle Driving Mode
+- [x] Toggle Driving Mode
 - [ ] Report Location / Orientation
-- [ ] Add Place
+- [x] Add Place
 - [ ] Edit Place
 - [ ] Delete Place
+- [ ] Get My Places
 - [ ] See Nearby Drivers
 - [ ] Subscribe to Nearby Drivers
 - [ ] Request a Ride
 - [ ] Get Nearby Ride Requests
 - [ ] Subscribe to Nearby Ride Requests
 - [ ] Subscribe to Ride Status
+- [ ] Create a Chat room
 - [ ] Get Chat Room Messages
 - [ ] Subscribe to Chat Room Messages
 - [ ] Send a Chat Message
